@@ -87,7 +87,7 @@ namespace Api.Controllers
                 return BadRequest("nombre vacio y/o precio igual a 0.");
             }
 
-            productoExistente.Nombre = producto.Nombre;
+            productoExistente.Nombre = producto.Nombre + ".";
             productoExistente.Precio = producto.Precio;
 
             return NoContent();
