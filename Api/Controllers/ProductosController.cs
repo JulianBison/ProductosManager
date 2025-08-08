@@ -10,9 +10,9 @@ namespace Api.Controllers
     {
         private static List<Producto> productList = new List<Producto>()
         {
-            new Producto(1, "Libro A", 25000),
-            new Producto(2, "Libro B", 32000),
-            new Producto(3, "Libro C", 12000)
+            new Producto(1, "Libro A", 25000, 1),
+            new Producto(2, "Libro B", 32000, 2),
+            new Producto(3, "Libro C", 12000, 3)
         };
 
         [HttpGet]
@@ -58,7 +58,9 @@ namespace Api.Controllers
                 producto.Id = 1;
             }
 
-            var newProducto = new Producto(producto.Id, producto.Nombre, producto.Precio);
+            int stock = producto.Stock == null ? 10 : producto.Stock.Value;
+
+            var newProducto = new Producto(producto.Id, producto.Nombre, producto.Precio, stock);
 
             productList.Add(newProducto);
 
