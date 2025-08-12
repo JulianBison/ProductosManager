@@ -1,9 +1,7 @@
 ﻿namespace Api.Contracts
 {
-    public class ProductoResponse
+    public class ProductoRequestStockPrice
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
     }
