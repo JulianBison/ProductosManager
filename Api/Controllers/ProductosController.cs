@@ -117,10 +117,9 @@ namespace Api.Controllers
                 return BadRequest("nombre vacio y/o precio igual a 0.");
             }
 
-            int stock = producto.Stock == null ? 10 : producto.Stock.Value;
             productoExistente.Nombre = producto.Nombre + ".";
             productoExistente.Precio = producto.Precio;
-            productoExistente.Stock = stock;
+            productoExistente.Stock = producto.Stock ?? productoExistente.Stock;
 
 
 
@@ -137,20 +136,17 @@ namespace Api.Controllers
                 return NotFound("Producto no encontrado");
             }
 
-            if (producto.Precio <= 0)
+            if (producto.Precio < 0)
             {
                 return BadRequest("precio igual o menor a 0.");
             }
-            if (producto.Stock >= 0)
-            {
-                productoExistente.Stock = producto.Stock;
-            }
-            else
+            if (producto.Stock < 0)
             {
                 return BadRequest("Stock no puede ser menor a 0");
             }
 
-                productoExistente.Precio = producto.Precio;
+            productoExistente.Precio = producto.Precio ?? productoExistente.Precio;
+            productoExistente.Stock = producto.Stock ?? productoExistente.Stock;
 
             return NoContent();
         }
